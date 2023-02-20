@@ -27,7 +27,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,6 +73,7 @@ public class Cardapio extends AppCompatActivity {
     RadioButton rdbtn_viagem;
 
     //Componentes Estaticos//
+    RadioButton rdbtn_tamanhoPP;
     RadioButton rdbtn_tamanhoP;
     RadioButton rdbtn_tamanhoM;
     RadioButton rdbtn_tamanhoG;
@@ -127,7 +127,7 @@ public class Cardapio extends AppCompatActivity {
 
         qtdClickHistorico = 0;
 
-       //Deixar o app fullscreen
+        //Deixar o app fullscreen
         decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         //Alterações na Action Bar//
@@ -166,79 +166,85 @@ public class Cardapio extends AppCompatActivity {
 
                 acai = cardapioService.gerarAcai(arrayTamanhos, arrayFormasAdocar, arraySabores, arrayAcompanhamentos1, arrayAcompanhamentos2, arrayFrutas);
 
-                    RadioButton rdbtninLocal = findViewById(R.id.rdbtn_InLoco);
-                    RadioButton rdbtnViagem = findViewById(R.id.rdbtn_Viagem);
+                RadioButton rdbtninLocal = findViewById(R.id.rdbtn_InLoco);
+                RadioButton rdbtnViagem = findViewById(R.id.rdbtn_Viagem);
 
-                    if (acai.getTam() != null && acai.getSabor() != null && !( (acai.getSabor() == Sabor.ACAI || acai.getSabor() == Sabor.METADE_METADE) && acai.getAdicional() == null) && (rdbtninLocal.isChecked() || rdbtnViagem.isChecked())) {
-
-
-
-                        SimpleDateFormat formataData = new SimpleDateFormat("dd-MM-yyyy");
-                        Date data = new Date();
-
-                        pedido = new Pedido(acai);
-                        pedido.setData(new Date());
-
-                        if (rdbtninLocal.isChecked()) {
-                            pedido.setLocal(Local.LOCAL);
-                        } else if (rdbtnViagem.isChecked()) {
-                            pedido.setLocal(Local.VIAGEM);
-                        }
+                if (acai.getTam() != null && acai.getSabor() != null && !( (acai.getSabor() == Sabor.ACAI || acai.getSabor() == Sabor.METADE_METADE) && acai.getAdicional() == null) && (rdbtninLocal.isChecked() || rdbtnViagem.isChecked())) {
 
 
-                        pedido.CalcularPedido();
-                        bancoController.inserirPedidoNoBanco(pedido);
 
-                        try {
+                    SimpleDateFormat formataData = new SimpleDateFormat("dd-MM-yyyy");
+                    Date data = new Date();
 
-                            final String pedidoStringfy = po.orderParser(pedido);
+                    pedido = new Pedido(acai);
+                    pedido.setData(new Date());
 
-                            btPrinter.sendData(pedidoStringfy);
-                            Log.d("IMPRIMINDO",pedidoStringfy);
-
-                            new java.util.Timer().schedule(
-                                    new java.util.TimerTask() {
-                                        @Override
-                                        public void run() {
-                                            try {
-                                                btPrinter.sendData(pedidoStringfy);
-                                                Log.d("IMPRIMINDO",pedidoStringfy);
-                                            }catch (Exception e){
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                    },
-                                    5000
-                            );
-                            //Log.d("IMPRIMINDO", po.orderParser(p));
-                            alertDialogCustom(pedido);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-
-                    } else if ((acai.getSabor() == Sabor.ACAI || acai.getSabor() == Sabor.METADE_METADE) && acai.getAdicional() == null){
-                        Toast toast = Toast.makeText(getApplicationContext(), Html.fromHtml("<b><big>" + "Escolha uma Forma de Adoçar" + "</big></b>"), Toast.LENGTH_SHORT);
-                        toast.setGravity(0, 0, 0);
-                        toast.show();
-                    }else if (acai.getTam() == null) {
-                        Toast toast = Toast.makeText(getApplicationContext(), Html.fromHtml("<b><big>" + "Escolha um Tamanho" + "</big></b>"), Toast.LENGTH_SHORT);
-                        toast.setGravity(0, 0, 0);
-                        toast.show();
-                    } else if (acai.getSabor() == null) {
-                        Toast toast = Toast.makeText(getApplicationContext(), Html.fromHtml("<b><big>" + "Escolha um Tipo de Açaí" + "</big></b>"), Toast.LENGTH_SHORT);
-                        toast.setGravity(0, 0, 0);
-                        toast.show();
-                    } else if (rdbtninLocal.isChecked() == false && rdbtnViagem.isChecked() == false) {
-                        Toast toast = Toast.makeText(getApplicationContext(), Html.fromHtml("<b><big>" + "Escolha um Local para Consumo" + "</big></b>"), Toast.LENGTH_SHORT);
-                        toast.setGravity(0, 0, 0);
-                        toast.show();
+                    if (rdbtninLocal.isChecked()) {
+                        pedido.setLocal(Local.LOCAL);
+                    } else if (rdbtnViagem.isChecked()) {
+                        pedido.setLocal(Local.VIAGEM);
                     }
+
+
+                    pedido.CalcularPedido();
+                    bancoController.inserirPedidoNoBanco(pedido);
+
+                    try {
+
+                        final String pedidoStringfy = po.orderParser(pedido);
+
+                        btPrinter.sendData(pedidoStringfy);
+                        Log.d("IMPRIMINDO",pedidoStringfy);
+
+                        new java.util.Timer().schedule(
+                                new java.util.TimerTask() {
+                                    @Override
+                                    public void run() {
+                                        try {
+                                            btPrinter.sendData(pedidoStringfy);
+                                            Log.d("IMPRIMINDO",pedidoStringfy);
+                                        }catch (Exception e){
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                },
+                                5000
+                        );
+                        //Log.d("IMPRIMINDO", po.orderParser(p));
+                        alertDialogCustom(pedido);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+                } else if ((acai.getSabor() == Sabor.ACAI || acai.getSabor() == Sabor.METADE_METADE) && acai.getAdicional() == null){
+                    Toast toast = Toast.makeText(getApplicationContext(), Html.fromHtml("<b><big>" + "Escolha uma Forma de Adoçar" + "</big></b>"), Toast.LENGTH_SHORT);
+                    toast.setGravity(0, 0, 0);
+                    toast.show();
+                }else if (acai.getTam() == null) {
+                    Toast toast = Toast.makeText(getApplicationContext(), Html.fromHtml("<b><big>" + "Escolha um Tamanho" + "</big></b>"), Toast.LENGTH_SHORT);
+                    toast.setGravity(0, 0, 0);
+                    toast.show();
+                } else if (acai.getSabor() == null) {
+                    Toast toast = Toast.makeText(getApplicationContext(), Html.fromHtml("<b><big>" + "Escolha um Tipo de Açaí" + "</big></b>"), Toast.LENGTH_SHORT);
+                    toast.setGravity(0, 0, 0);
+                    toast.show();
+                } else if (rdbtninLocal.isChecked() == false && rdbtnViagem.isChecked() == false) {
+                    Toast toast = Toast.makeText(getApplicationContext(), Html.fromHtml("<b><big>" + "Escolha um Local para Consumo" + "</big></b>"), Toast.LENGTH_SHORT);
+                    toast.setGravity(0, 0, 0);
+                    toast.show();
+                }
 
             }
         });
 
         //Componentes Estaticos//
+        rdbtn_tamanhoPP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                montarTamanhoEstatico(view);
+            }
+        });
         rdbtn_tamanhoP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -572,10 +578,12 @@ public class Cardapio extends AppCompatActivity {
 
 
         //Componentes Estaticos//
+        rdbtn_tamanhoPP = (RadioButton)findViewById(R.id.rdbtn_tamanhoPP);
         rdbtn_tamanhoP = (RadioButton)findViewById(R.id.rdbtn_tamanhoP);
         rdbtn_tamanhoM = (RadioButton)findViewById(R.id.rdbtn_tamanhoM);
         rdbtn_tamanhoG = (RadioButton)findViewById(R.id.rdbtn_tamanhoG);
         rdbtn_tamanhoGG = (RadioButton)findViewById(R.id.rdbtn_tamanhoGG);
+
         checkBox_Kiwi = (CheckBox) findViewById(R.id.checkBox_Kiwi);
         checkBox_Morango = (CheckBox) findViewById(R.id.checkBox_Morango);
         checkBox_Manga = (CheckBox) findViewById(R.id.checkBox_Manga);
@@ -610,6 +618,7 @@ public class Cardapio extends AppCompatActivity {
         ArrayList<Tamanho> listaTamanhos = new ArrayList<Tamanho>();
 
         //Adicionar Frutas//
+        listaTamanhos.add(Tamanho.PP);
         listaTamanhos.add(Tamanho.P);
         listaTamanhos.add(Tamanho.M);
         listaTamanhos.add(Tamanho.G);
@@ -782,16 +791,14 @@ public class Cardapio extends AppCompatActivity {
     }
 
     public void limparAdapter(){
-        //Estatico
-        RadioGroup radioGroup = (RadioGroup)findViewById(R.id.radio_group);
-        radioGroup.clearCheck();
 
+        //Clear BowlSize RadioButtons
+        //clearCheckeBowlSizedButtons(0);
+
+        // Clear Local Of Cunsumption RadioButtons
         rdbtn_inLoco = (RadioButton) findViewById(R.id.rdbtn_InLoco);
         rdbtn_viagem = (RadioButton) findViewById(R.id.rdbtn_Viagem);
-
         rdbtn_inLoco.setChecked(false);
-
-
         rdbtn_viagem.setChecked(false);
 
 
@@ -881,55 +888,62 @@ public class Cardapio extends AppCompatActivity {
         for (int i = 0; i < arrayTamanhos.size(); i++) {
             arrayTamanhos.get(i).setChecado(false);
         }
+        if(v.getId() == R.id.rdbtn_tamanhoPP){
 
-            if(v.getId() == R.id.rdbtn_tamanhoP || v.getId()==R.id.txt_precoP){
-            //Marcar Se clicar no txtView
-                if(v.getId()==R.id.txt_precoP)
-                    rdbtn_tamanhoP.setChecked(true);
+            clearCheckeBowlSizedButtons(v.getId());
 
-                arrayTamanhos.get(0).setChecado(true);
-                p.salvarPreferencias("precoTamanhos",(float)(arrayTamanhos.get(0).getValor()));
-                precoFinal.setPrecoTamanho(p.carregarPreferencias("precoTamanhos"));
-                precoFinal.notifyChange();
-                btn_confirmarPedido.setText(Html.fromHtml("<b><big>" + getString(R.string.confirmar) + "</big></b>" ));
+            arrayTamanhos.get(0).setChecado(true);
+            p.salvarPreferencias("precoTamanhos",(float)(arrayTamanhos.get(0).getValor()));
+            precoFinal.setPrecoTamanho(p.carregarPreferencias("precoTamanhos"));
+            precoFinal.notifyChange();
+            btn_confirmarPedido.setText(Html.fromHtml("<b><big>" + getString(R.string.confirmar) + "</big></b>" ));
 
-             }
-            else if(v.getId() == R.id.rdbtn_tamanhoM || v.getId()==R.id.txt_precoM) {
-                //Marcar Se clicar no txtView
-                if(v.getId()==R.id.txt_precoM)
-                    rdbtn_tamanhoM.setChecked(true);
+        }
 
-                arrayTamanhos.get(1).setChecado(true);
-                p.salvarPreferencias("precoTamanhos", (float) (arrayTamanhos.get(1).getValor()));
-                precoFinal.setPrecoTamanho(p.carregarPreferencias("precoTamanhos"));
-                precoFinal.notifyChange();
-                btn_confirmarPedido.setText(Html.fromHtml("<b><big>" + getString(R.string.confirmar) + "</big></b>" ));
+        if(v.getId() == R.id.rdbtn_tamanhoP){
 
-            }
-            else if(v.getId() == R.id.rdbtn_tamanhoG || v.getId() == R.id.txt_precoG){
-                //Marcar Se clicar no txtView
-                if(v.getId()==R.id.txt_precoG)
-                    rdbtn_tamanhoG.setChecked(true);
+            clearCheckeBowlSizedButtons(v.getId());
 
-                arrayTamanhos.get(2).setChecado(true);
-                p.salvarPreferencias("precoTamanhos",(float)(arrayTamanhos.get(2).getValor()));
-                precoFinal.setPrecoTamanho(p.carregarPreferencias("precoTamanhos"));
-                precoFinal.notifyChange();
-                btn_confirmarPedido.setText(Html.fromHtml("<b><big>" + getString(R.string.confirmar) + "</big></b>" ));
+            arrayTamanhos.get(1).setChecado(true);
+            p.salvarPreferencias("precoTamanhos",(float)(arrayTamanhos.get(1).getValor()));
+            precoFinal.setPrecoTamanho(p.carregarPreferencias("precoTamanhos"));
+            precoFinal.notifyChange();
+            btn_confirmarPedido.setText(Html.fromHtml("<b><big>" + getString(R.string.confirmar) + "</big></b>" ));
 
-            }
-            else if(v.getId() == R.id.rdbtn_tamanhoGG || v.getId() == R.id.txt_PrecoGG) {
-                //Marcar Se clicar no txtView
-                if(v.getId()==R.id.txt_PrecoGG)
-                    rdbtn_tamanhoGG.setChecked(true);
+        }
+        else if(v.getId() == R.id.rdbtn_tamanhoM) {
 
-                arrayTamanhos.get(3).setChecado(true);
-                p.salvarPreferencias("precoTamanhos", (float) (arrayTamanhos.get(3).getValor()));
-                precoFinal.setPrecoTamanho(p.carregarPreferencias("precoTamanhos"));
-                precoFinal.notifyChange();
-                btn_confirmarPedido.setText(Html.fromHtml("<b><big>" + getString(R.string.confirmar) + "</big></b>" ));
+            clearCheckeBowlSizedButtons(v.getId());
 
-            }
+            arrayTamanhos.get(2).setChecado(true);
+            p.salvarPreferencias("precoTamanhos", (float) (arrayTamanhos.get(2).getValor()));
+            precoFinal.setPrecoTamanho(p.carregarPreferencias("precoTamanhos"));
+            precoFinal.notifyChange();
+            btn_confirmarPedido.setText(Html.fromHtml("<b><big>" + getString(R.string.confirmar) + "</big></b>" ));
+
+        }
+        else if(v.getId() == R.id.rdbtn_tamanhoG){
+
+            clearCheckeBowlSizedButtons(v.getId());
+
+            arrayTamanhos.get(3).setChecado(true);
+            p.salvarPreferencias("precoTamanhos",(float)(arrayTamanhos.get(3).getValor()));
+            precoFinal.setPrecoTamanho(p.carregarPreferencias("precoTamanhos"));
+            precoFinal.notifyChange();
+            btn_confirmarPedido.setText(Html.fromHtml("<b><big>" + getString(R.string.confirmar) + "</big></b>" ));
+
+        }
+        else if(v.getId() == R.id.rdbtn_tamanhoGG) {
+
+            clearCheckeBowlSizedButtons(v.getId());
+
+            arrayTamanhos.get(4).setChecado(true);
+            p.salvarPreferencias("precoTamanhos", (float) (arrayTamanhos.get(4).getValor()));
+            precoFinal.setPrecoTamanho(p.carregarPreferencias("precoTamanhos"));
+            precoFinal.notifyChange();
+            btn_confirmarPedido.setText(Html.fromHtml("<b><big>" + getString(R.string.confirmar) + "</big></b>" ));
+
+        }
 
     }
 
@@ -937,72 +951,86 @@ public class Cardapio extends AppCompatActivity {
 
         Preferences p = new Preferences(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
 
-            if(v.getId() == R.id.checkBox_Manga || v.getId() == R.id.txt_precoManga) {
-                if(v.getId() == R.id.txt_precoManga){
-                    if(checkBox_Manga.isChecked())
-                        checkBox_Manga.setChecked(false);
-                    else
-                        checkBox_Manga.setChecked(true);
-                }
-
-                if (checkBox_Manga.isChecked()) {
-                    arrayFrutas.get(0).setComprado(true);
-                    p.salvarPreferencias("precoFrutas", p.carregarPreferencias("precoFrutas") + (float) (arrayFrutas.get(0).getValor()));
-                    precoFinal.setPrecoFrutas(p.carregarPreferencias("precoFrutas"));
-                    precoFinal.notifyChange();
-                } else {
-                    arrayFrutas.get(0).setComprado(false);
-                    p.salvarPreferencias("precoFrutas", p.carregarPreferencias("precoFrutas") - (float) (arrayFrutas.get(0).getValor()));
-                    precoFinal.setPrecoFrutas(p.carregarPreferencias("precoFrutas"));
-                    precoFinal.notifyChange();
-                }
+        if(v.getId() == R.id.checkBox_Manga || v.getId() == R.id.txt_precoManga) {
+            if(v.getId() == R.id.txt_precoManga){
+                if(checkBox_Manga.isChecked())
+                    checkBox_Manga.setChecked(false);
+                else
+                    checkBox_Manga.setChecked(true);
             }
-            if(v.getId() == R.id.checkBox_Morango || v.getId() == R.id.txt_precoMorango) {
-                if(v.getId() == R.id.txt_precoMorango){
-                    if(checkBox_Morango.isChecked())
-                        checkBox_Morango.setChecked(false);
-                    else
-                        checkBox_Morango.setChecked(true);
-                }
 
-                if (checkBox_Morango.isChecked()) {
-                    arrayFrutas.get(1).setComprado(true);
-                    p.salvarPreferencias("precoFrutas", p.carregarPreferencias("precoFrutas") + (float) (arrayFrutas.get(0).getValor()));
-                    precoFinal.setPrecoFrutas(p.carregarPreferencias("precoFrutas"));
-                    precoFinal.notifyChange();
-                } else {
-                    arrayFrutas.get(1).setComprado(false);
-                    p.salvarPreferencias("precoFrutas", p.carregarPreferencias("precoFrutas") - (float) (arrayFrutas.get(0).getValor()));
-                    precoFinal.setPrecoFrutas(p.carregarPreferencias("precoFrutas"));
-                    precoFinal.notifyChange();
-                }
-
+            if (checkBox_Manga.isChecked()) {
+                arrayFrutas.get(0).setComprado(true);
+                p.salvarPreferencias("precoFrutas", p.carregarPreferencias("precoFrutas") + (float) (arrayFrutas.get(0).getValor()));
+                precoFinal.setPrecoFrutas(p.carregarPreferencias("precoFrutas"));
+                precoFinal.notifyChange();
+            } else {
+                arrayFrutas.get(0).setComprado(false);
+                p.salvarPreferencias("precoFrutas", p.carregarPreferencias("precoFrutas") - (float) (arrayFrutas.get(0).getValor()));
+                precoFinal.setPrecoFrutas(p.carregarPreferencias("precoFrutas"));
+                precoFinal.notifyChange();
             }
-            if(v.getId() == R.id.checkBox_Kiwi || v.getId() == R.id.txt_precoKiwi) {
-                if(v.getId() == R.id.txt_precoKiwi){
-                    if(checkBox_Kiwi.isChecked())
-                        checkBox_Kiwi.setChecked(false);
-                    else
-                        checkBox_Kiwi.setChecked(true);
-                }
-
-                if (checkBox_Kiwi.isChecked()) {
-                    arrayFrutas.get(2).setComprado(true);
-                    p.salvarPreferencias("precoFrutas", p.carregarPreferencias("precoFrutas") + (float) (arrayFrutas.get(0).getValor()));
-                    precoFinal.setPrecoFrutas(p.carregarPreferencias("precoFrutas"));
-                    precoFinal.notifyChange();
-                } else {
-                    arrayFrutas.get(2).setComprado(false);
-                    p.salvarPreferencias("precoFrutas", p.carregarPreferencias("precoFrutas") - (float) (arrayFrutas.get(0).getValor()));
-                    precoFinal.setPrecoFrutas(p.carregarPreferencias("precoFrutas"));
-                    precoFinal.notifyChange();
-                }
-
+        }
+        if(v.getId() == R.id.checkBox_Morango || v.getId() == R.id.txt_precoMorango) {
+            if(v.getId() == R.id.txt_precoMorango){
+                if(checkBox_Morango.isChecked())
+                    checkBox_Morango.setChecked(false);
+                else
+                    checkBox_Morango.setChecked(true);
             }
+
+            if (checkBox_Morango.isChecked()) {
+                arrayFrutas.get(1).setComprado(true);
+                p.salvarPreferencias("precoFrutas", p.carregarPreferencias("precoFrutas") + (float) (arrayFrutas.get(0).getValor()));
+                precoFinal.setPrecoFrutas(p.carregarPreferencias("precoFrutas"));
+                precoFinal.notifyChange();
+            } else {
+                arrayFrutas.get(1).setComprado(false);
+                p.salvarPreferencias("precoFrutas", p.carregarPreferencias("precoFrutas") - (float) (arrayFrutas.get(0).getValor()));
+                precoFinal.setPrecoFrutas(p.carregarPreferencias("precoFrutas"));
+                precoFinal.notifyChange();
+            }
+
+        }
+        if(v.getId() == R.id.checkBox_Kiwi || v.getId() == R.id.txt_precoKiwi) {
+            if(v.getId() == R.id.txt_precoKiwi){
+                if(checkBox_Kiwi.isChecked())
+                    checkBox_Kiwi.setChecked(false);
+                else
+                    checkBox_Kiwi.setChecked(true);
+            }
+
+            if (checkBox_Kiwi.isChecked()) {
+                arrayFrutas.get(2).setComprado(true);
+                p.salvarPreferencias("precoFrutas", p.carregarPreferencias("precoFrutas") + (float) (arrayFrutas.get(0).getValor()));
+                precoFinal.setPrecoFrutas(p.carregarPreferencias("precoFrutas"));
+                precoFinal.notifyChange();
+            } else {
+                arrayFrutas.get(2).setComprado(false);
+                p.salvarPreferencias("precoFrutas", p.carregarPreferencias("precoFrutas") - (float) (arrayFrutas.get(0).getValor()));
+                precoFinal.setPrecoFrutas(p.carregarPreferencias("precoFrutas"));
+                precoFinal.notifyChange();
+            }
+
+        }
         btn_confirmarPedido.setText(Html.fromHtml("<b><big>" + getString(R.string.confirmar) + "</big></b>" ));
 
 
     }
+
+    public void clearCheckeBowlSizedButtons(int id){
+        rdbtn_tamanhoPP = (RadioButton)findViewById(R.id.rdbtn_tamanhoPP);
+        rdbtn_tamanhoP = (RadioButton)findViewById(R.id.rdbtn_tamanhoP);
+        rdbtn_tamanhoM = (RadioButton)findViewById(R.id.rdbtn_tamanhoM);
+        rdbtn_tamanhoG = (RadioButton)findViewById(R.id.rdbtn_tamanhoG);
+        rdbtn_tamanhoGG = (RadioButton)findViewById(R.id.rdbtn_tamanhoGG);
+        if (R.id.rdbtn_tamanhoPP != id) rdbtn_tamanhoPP.setChecked(false);
+        if (R.id.rdbtn_tamanhoP != id) rdbtn_tamanhoP.setChecked(false);
+        if (R.id.rdbtn_tamanhoM != id) rdbtn_tamanhoM.setChecked(false);
+        if (R.id.rdbtn_tamanhoG != id) rdbtn_tamanhoG.setChecked(false);
+        if (R.id.rdbtn_tamanhoGG != id) rdbtn_tamanhoGG.setChecked(false);
+    }
+
 
     public void limparLista(){
         for (int i = 0; i < arrayFormasAdocar.size() ; i++) {

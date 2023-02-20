@@ -1,6 +1,8 @@
 package com.example.avelino.cardapiointeligente.Model;
 
 public enum Tamanho {
+
+	PP("PP",7.5),
 	P("P",10.5),
 	M("M",13.5),
 	G("G",16.5),

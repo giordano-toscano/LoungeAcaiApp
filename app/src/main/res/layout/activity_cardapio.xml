@@ -75,7 +75,7 @@
         android:layout_weight="1"
         android:onClick="montarTamanhoEstatico"
         android:paddingRight="1dp"
-        android:text="+R$0,50"
+        android:text="+R$1,00"
         android:textColor="@color/paletaSecundaria"
         android:textSize="@dimen/txt_size_preco"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
@@ -98,141 +98,73 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rdbtn_Viagem" />
 
-    <RadioGroup
-        android:id="@+id/radio_group"
-        android:layout_width="match_parent"
+
+    <RadioButton
+        android:id="@+id/rdbtn_tamanhoPP"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
+        android:layout_weight="1"
+        android:paddingBottom="@dimen/space_padding_topbotton"
+        android:text="200ml"
+        android:textColor="@color/paletaSecundaria"
+        android:textSize="@dimen/txt_size_itensEstaticos"
+        app:layout_constraintEnd_toStartOf="@+id/rdbtn_tamanhoP"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3">
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-        <RadioButton
-            android:id="@+id/rdbtn_tamanhoPP"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_weight="1"
-            android:paddingTop="@dimen/space_padding_topbotton"
-            android:paddingRight="1dp"
-            android:paddingBottom="@dimen/space_padding_topbotton"
-            android:text="PP"
-            android:textColor="@color/paletaPrincipal"
-            android:textSize="@dimen/txt_size_itensEstaticos" />
+    <RadioButton
+        android:id="@+id/rdbtn_tamanhoP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="300ml"
+        android:textColor="@color/paletaSecundaria"
+        android:textSize="@dimen/txt_size_itensEstaticos"
+        app:layout_constraintEnd_toStartOf="@+id/rdbtn_tamanhoM"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/rdbtn_tamanhoPP"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-        <TextView
-            android:id="@+id/txt_precoPP"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_weight="1"
-            android:onClick="montarTamanhoEstatico"
-            android:paddingRight="1dp"
-            android:text="200ml"
-            android:textColor="@color/paletaSecundaria"
-            android:textSize="@dimen/txt_size_preco" />
+    <RadioButton
+        android:id="@+id/rdbtn_tamanhoM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="400ml"
+        android:textColor="@color/paletaSecundaria"
+        android:textSize="@dimen/txt_size_itensEstaticos"
+        app:layout_constraintEnd_toStartOf="@+id/rdbtn_tamanhoG"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/rdbtn_tamanhoP"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-        <RadioButton
-            android:id="@+id/rdbtn_tamanhoP"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_weight="1"
-            android:paddingLeft="3dp"
-            android:paddingTop="@dimen/space_padding_topbotton"
-            android:paddingRight="1dp"
-            android:paddingBottom="@dimen/space_padding_topbotton"
-            android:text="P"
-            android:textColor="@color/paletaPrincipal"
-            android:textSize="@dimen/txt_size_itensEstaticos" />
+    <RadioButton
+        android:id="@+id/rdbtn_tamanhoG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="500ml"
+        android:textColor="@color/paletaSecundaria"
+        android:textSize="@dimen/txt_size_itensEstaticos"
+        app:layout_constraintEnd_toStartOf="@+id/rdbtn_tamanhoGG"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/rdbtn_tamanhoM"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-        <TextView
-            android:id="@+id/txt_precoP"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_weight="1"
-            android:onClick="montarTamanhoEstatico"
-            android:text="300ml"
-            android:textColor="@color/paletaSecundaria"
-            android:textSize="@dimen/txt_size_preco" />
-
-        <RadioButton
-            android:id="@+id/rdbtn_tamanhoM"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_weight="1"
-            android:paddingLeft="3dp"
-            android:paddingTop="@dimen/space_padding_topbotton"
-            android:paddingRight="3dp"
-            android:paddingBottom="@dimen/space_padding_topbotton"
-            android:text="M"
-            android:textColor="@color/paletaPrincipal"
-            android:textSize="@dimen/txt_size_itensEstaticos" />
-
-        <TextView
-            android:id="@+id/txt_precoM"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_weight="1"
-            android:onClick="montarTamanhoEstatico"
-            android:text="400ml"
-            android:textColor="@color/paletaSecundaria"
-            android:textSize="@dimen/txt_size_preco" />
-
-        <RadioButton
-            android:id="@+id/rdbtn_tamanhoG"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_weight="1"
-            android:paddingLeft="3dp"
-            android:paddingTop="@dimen/space_padding_topbotton"
-            android:paddingRight="3dp"
-            android:paddingBottom="@dimen/space_padding_topbotton"
-            android:text="G"
-            android:textColor="@color/paletaPrincipal"
-            android:textSize="@dimen/txt_size_itensEstaticos" />
-
-        <TextView
-            android:id="@+id/txt_precoG"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_weight="1"
-            android:onClick="montarTamanhoEstatico"
-            android:text="500ml"
-            android:textColor="@color/paletaSecundaria"
-            android:textSize="@dimen/txt_size_preco" />
-
-        <RadioButton
-            android:id="@+id/rdbtn_tamanhoGG"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_weight="1"
-            android:paddingLeft="3dp"
-            android:paddingTop="@dimen/space_padding_topbotton"
-            android:paddingRight="3dp"
-            android:paddingBottom="@dimen/space_padding_topbotton"
-            android:text="GG"
-            android:textColor="@color/paletaPrincipal"
-            android:textSize="@dimen/txt_size_itensEstaticos" />
-
-        <TextView
-            android:id="@+id/txt_PrecoGG"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_weight="1"
-            android:onClick="montarTamanhoEstatico"
-            android:text="750ml"
-            android:textColor="@color/paletaSecundaria"
-            android:textSize="@dimen/txt_size_preco" />
-    </RadioGroup>
+    <RadioButton
+        android:id="@+id/rdbtn_tamanhoGG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="750ml"
+        android:textColor="@color/paletaSecundaria"
+        android:textSize="@dimen/txt_size_itensEstaticos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/rdbtn_tamanhoG"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 
     <TextView
@@ -248,8 +180,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_group"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintTop_toBottomOf="@+id/rdbtn_tamanhoPP"
+        app:layout_constraintVertical_bias="0.5" />
 
     <ListView
         android:id="@+id/list_Sabores"
@@ -544,15 +476,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 
     <CheckBox
         android:id="@+id/checkBox_Manga"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
         android:layout_weight="1"
         android:paddingTop="@dimen/space_padding_topbotton"
         android:paddingBottom="@dimen/space_padding_topbotton"
@@ -561,6 +491,7 @@
         android:textSize="@dimen/txt_size_itensEstaticos"
         app:layout_constraintEnd_toStartOf="@+id/txt_precoManga"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toEndOf="@+id/linearLayout4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -569,7 +500,6 @@
         android:id="@+id/txt_precoManga"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:layout_weight="1"
         android:onClick="montarFrutasEstatico"
         android:text="+R$3,00"
@@ -593,14 +523,16 @@
         android:text="Kiwi"
         android:textColor="@color/paletaPrincipal"
         android:textSize="@dimen/txt_size_itensEstaticos"
+        app:layout_constraintEnd_toStartOf="@+id/txt_precoKiwi"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/txt_precoManga"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
 
     <TextView
         android:id="@+id/txt_precoKiwi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:layout_weight="1"
         android:onClick="montarFrutasEstatico"
         android:text="+R$3,00"
@@ -612,7 +544,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/checkBox_Kiwi"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.476" />
 
     <CheckBox
         android:id="@+id/checkBox_Morango"
@@ -624,15 +556,17 @@
         android:text="Morango"
         android:textColor="@color/paletaPrincipal"
         android:textSize="@dimen/txt_size_itensEstaticos"
+        app:layout_constraintBottom_toTopOf="@+id/textView8"
+        app:layout_constraintEnd_toStartOf="@+id/txt_precoMorango"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/txt_precoKiwi"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/txt_precoMorango"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:layout_weight="1"
         android:onClick="montarFrutasEstatico"
         android:text="+R$3,00"
@@ -640,6 +574,8 @@
         android:textSize="@dimen/txt_size_preco"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/textView8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/checkBox_Morango"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         app:layout_constraintVertical_bias="0.5" />
@@ -720,7 +656,9 @@
         android:background="@color/paletaPrincipal"
         android:textColor="@android:color/background_light"
         android:textSize="@dimen/txt_size_confirmar"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/guideline" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
