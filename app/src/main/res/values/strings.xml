@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Lounge do Açaí</string>
+    <string name="confirmar">Confirmar Pedido</string>
+    <string name="preco">R$ </string>
+    <string name="nome_impressora">KP-1025</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_historico">HistoricoActivity</string>
+</resources>

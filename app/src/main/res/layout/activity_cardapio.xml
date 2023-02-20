@@ -1,0 +1,809 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Cardapio">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/layoutGeral"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/paletaPrincipal"
+                            android:gravity="center"
+                            android:text="Consumo"
+                            android:textColor="@android:color/background_light"
+                            android:textSize="@dimen/txt_size_titulos" />
+
+                        <RadioGroup
+                            android:id="@+id/radio_groupLocal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="#FFF"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+
+                                android:id="@+id/rdbtn_InLoco"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:buttonTint="#128310"
+                                android:checked="false"
+                                android:text="Consumo no Local"
+                                android:textColor="@color/paletaPrincipal"
+                                android:textSize="@dimen/txt_size_itens" />
+
+                            <TextView
+                                android:id="@+id/txt_precoNoLocal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:layout_weight="1"
+                                android:onClick="montarTamanhoEstatico"
+                                android:paddingRight="1dp"
+                                android:textColor="@color/paletaSecundaria"
+                                android:textSize="@dimen/txt_size_preco" />
+
+                            <RadioButton
+
+                                android:id="@+id/rdbtn_Viagem"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:buttonTint="#128310"
+                                android:text="Embalar p/ Viagem "
+                                android:textColor="@color/paletaPrincipal"
+                                android:textSize="@dimen/txt_size_itens" />
+
+                            <TextView
+                                android:id="@+id/txt_precoEmbalagem"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:layout_weight="1"
+                                android:onClick="montarTamanhoEstatico"
+                                android:paddingRight="1dp"
+                                android:text="R$0,50"
+                                android:textColor="@color/paletaSecundaria"
+                                android:textSize="@dimen/txt_size_preco" />
+
+                        </RadioGroup>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/paletaPrincipal"
+                            android:gravity="center"
+                            android:text="Tamanhos"
+                            android:textColor="@android:color/background_light"
+                            android:textSize="@dimen/txt_size_titulos" />
+
+                        <RadioGroup
+                            android:id="@+id/radio_group"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_above="@+id/view_below"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rdbtn_tamanhoP"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_weight="1"
+                                android:paddingTop="@dimen/space_padding_topbotton"
+                                android:paddingRight="1dp"
+                                android:paddingBottom="@dimen/space_padding_topbotton"
+                                android:text="P"
+                                android:textColor="@color/paletaPrincipal"
+                                android:textSize="@dimen/txt_size_itensEstaticos" />
+
+                            <TextView
+                                android:id="@+id/txt_precoP"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:layout_weight="1"
+                                android:onClick="montarTamanhoEstatico"
+                                android:paddingRight="1dp"
+                                android:text="300ml"
+                                android:textColor="@color/paletaSecundaria"
+                                android:textSize="@dimen/txt_size_preco" />
+
+                            <RadioButton
+                                android:id="@+id/rdbtn_tamanhoM"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_weight="1"
+                                android:paddingLeft="3dp"
+                                android:paddingTop="@dimen/space_padding_topbotton"
+                                android:paddingRight="3dp"
+                                android:paddingBottom="@dimen/space_padding_topbotton"
+                                android:text="M"
+                                android:textColor="@color/paletaPrincipal"
+                                android:textSize="@dimen/txt_size_itensEstaticos" />
+
+                            <TextView
+                                android:id="@+id/txt_precoM"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:layout_weight="1"
+                                android:onClick="montarTamanhoEstatico"
+                                android:text="400ml"
+                                android:textColor="@color/paletaSecundaria"
+                                android:textSize="@dimen/txt_size_preco" />
+
+                            <RadioButton
+                                android:id="@+id/rdbtn_tamanhoG"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_weight="1"
+                                android:paddingLeft="3dp"
+                                android:paddingTop="@dimen/space_padding_topbotton"
+                                android:paddingRight="3dp"
+                                android:paddingBottom="@dimen/space_padding_topbotton"
+                                android:text="G"
+                                android:textColor="@color/paletaPrincipal"
+                                android:textSize="@dimen/txt_size_itensEstaticos" />
+
+                            <TextView
+                                android:id="@+id/txt_precoG"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:layout_weight="1"
+                                android:onClick="montarTamanhoEstatico"
+                                android:text="500ml"
+                                android:textColor="@color/paletaSecundaria"
+                                android:textSize="@dimen/txt_size_preco" />
+
+                            <RadioButton
+                                android:id="@+id/rdbtn_tamanhoGG"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_weight="1"
+                                android:paddingLeft="3dp"
+                                android:paddingTop="@dimen/space_padding_topbotton"
+                                android:paddingRight="3dp"
+                                android:paddingBottom="@dimen/space_padding_topbotton"
+                                android:text="GG"
+                                android:textColor="@color/paletaPrincipal"
+                                android:textSize="@dimen/txt_size_itensEstaticos" />
+
+                            <TextView
+                                android:id="@+id/txt_PrecoGG"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:layout_weight="1"
+                                android:onClick="montarTamanhoEstatico"
+                                android:text="750ml"
+                                android:textColor="@color/paletaSecundaria"
+                                android:textSize="@dimen/txt_size_preco" />
+                        </RadioGroup>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <!---<ListView
+                                    android:id="@+id/list_Tamanhos"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />-->
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="right|center"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="8dp"
+                                        android:text="R$ 7,50"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="8dp"
+                                        android:text="R$ 10,00"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="8dp"
+                                        android:text="R$ 13,00"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="8dp"
+                                        android:text="R$ 19,50"
+                                        android:textSize="12sp" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/paletaPrincipal"
+                            android:gravity="center"
+                            android:text="Tipos"
+                            android:textColor="@android:color/background_light"
+                            android:textSize="@dimen/txt_size_titulos" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <ListView
+                                android:id="@+id/list_Sabores"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="0dp"
+                                android:background="@color/paletaPrincipal"
+                                android:gravity="center"
+                                android:text="Formas de Adoçar (Açaí)"
+                                android:textColor="@android:color/background_light"
+                                android:textSize="@dimen/txt_size_titulos" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <CheckBox
+                                        android:id="@+id/chckbtn_adicionalXarope"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/space_padding_topbotton"
+                                        android:layout_marginBottom="@dimen/space_padding_topbotton"
+                                        android:layout_weight="1"
+                                        android:text="Xarope"
+                                        android:textColor="@color/paletaPrincipal"
+                                        android:textSize="@dimen/txt_size_itens" />
+
+                                    <TextView
+                                        android:id="@+id/txt_precoAdicionalXarope"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/space_padding_topbotton"
+                                        android:layout_marginBottom="@dimen/space_padding_topbotton"
+                                        android:layout_weight="1"
+                                        android:onClick="montarAdicionalEstatico"
+                                        android:textColor="@color/paletaSecundaria"
+                                        android:textSize="@dimen/txt_size_preco" />
+
+                                    <CheckBox
+                                        android:id="@+id/chckbtn_adicionalSemAcucar"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/space_padding_topbotton"
+                                        android:layout_marginBottom="@dimen/space_padding_topbotton"
+                                        android:layout_weight="1"
+                                        android:text="Sem Açúcar"
+                                        android:textColor="@color/paletaPrincipal"
+                                        android:textSize="@dimen/txt_size_itens" />
+
+                                    <TextView
+                                        android:id="@+id/txt_precoAdicionalSemAcucar"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/space_padding_topbotton"
+                                        android:layout_marginBottom="@dimen/space_padding_topbotton"
+                                        android:layout_weight="1"
+                                        android:gravity="end"
+                                        android:onClick="montarAdicionalEstatico"
+                                        android:text="R$1,00"
+                                        android:textColor="@color/paletaSecundaria"
+                                        android:textSize="@dimen/txt_size_preco"
+                                        android:visibility="invisible" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <CheckBox
+                                        android:id="@+id/chckbtn_adicionalMel"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/space_padding_topbotton"
+                                        android:layout_marginBottom="@dimen/space_padding_topbotton"
+                                        android:layout_weight="1"
+                                        android:text="Mel"
+                                        android:textColor="@color/paletaPrincipal"
+                                        android:textSize="@dimen/txt_size_itens" />
+
+                                    <TextView
+                                        android:id="@+id/txt_precoAdicionalMel"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/space_padding_topbotton"
+                                        android:layout_marginBottom="@dimen/space_padding_topbotton"
+                                        android:layout_weight="1"
+                                        android:gravity="end"
+                                        android:onClick="montarAdicionalEstatico"
+                                        android:text="R$3,00"
+                                        android:textColor="@color/paletaSecundaria"
+                                        android:textSize="@dimen/txt_size_preco"
+                                        android:visibility="invisible" />
+
+                                    <CheckBox
+                                        android:id="@+id/chckbtn_adicionalMascavo"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/space_padding_topbotton"
+                                        android:layout_marginBottom="@dimen/space_padding_topbotton"
+                                        android:layout_weight="1"
+                                        android:text="Mascavo"
+                                        android:textColor="@color/paletaPrincipal"
+                                        android:textSize="@dimen/txt_size_itens" />
+
+                                    <TextView
+                                        android:id="@+id/txt_precoAdicionalMascavo"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/space_padding_topbotton"
+                                        android:layout_marginBottom="@dimen/space_padding_topbotton"
+                                        android:layout_weight="1"
+                                        android:gravity="end"
+                                        android:onClick="montarAdicionalEstatico"
+                                        android:text="R$4,00"
+                                        android:textColor="@color/paletaSecundaria"
+                                        android:textSize="@dimen/txt_size_preco"
+                                        android:visibility="invisible" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:orientation="horizontal">
+
+                                        <CheckBox
+                                            android:id="@+id/chckbtn_adicionalDemerara"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/space_padding_topbotton"
+                                            android:layout_marginBottom="@dimen/space_padding_topbotton"
+                                            android:layout_weight="1"
+                                            android:text="Demerara"
+                                            android:textColor="@color/paletaPrincipal"
+                                            android:textSize="@dimen/txt_size_itens" />
+
+                                        <TextView
+                                            android:id="@+id/txt_precoAdicionalDemerara"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/space_padding_topbotton"
+                                            android:layout_marginBottom="@dimen/space_padding_topbotton"
+                                            android:layout_weight="1"
+                                            android:gravity="end"
+                                            android:onClick="montarAdicionalEstatico"
+                                            android:text="R$2,00"
+                                            android:textColor="@color/paletaSecundaria"
+                                            android:textSize="@dimen/txt_size_preco"
+                                            android:visibility="invisible" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:orientation="horizontal">
+
+                                        <CheckBox
+                                            android:id="@+id/chckbtn_adicionalXilitol"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/space_padding_topbotton"
+                                            android:layout_marginBottom="@dimen/space_padding_topbotton"
+                                            android:layout_weight="1"
+                                            android:text="Xilitol"
+                                            android:textColor="@color/paletaPrincipal"
+                                            android:textSize="@dimen/txt_size_itens" />
+
+                                        <TextView
+                                            android:id="@+id/txt_precoAdicionalXilitol"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/space_padding_topbotton"
+                                            android:layout_marginBottom="@dimen/space_padding_topbotton"
+                                            android:layout_weight="1"
+                                            android:gravity="end"
+                                            android:onClick="montarAdicionalEstatico"
+                                            android:text="R$5,00"
+                                            android:textColor="@color/paletaSecundaria"
+                                            android:textSize="@dimen/txt_size_preco"
+                                            android:visibility="invisible" />
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:orientation="horizontal">
+
+                                        <CheckBox
+                                            android:id="@+id/chckbtn_adicionalStevia"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/space_padding_topbotton"
+                                            android:layout_marginBottom="@dimen/space_padding_topbotton"
+                                            android:layout_weight="1"
+                                            android:text="Stevia"
+                                            android:textColor="@color/paletaPrincipal"
+                                            android:textSize="@dimen/txt_size_itens"
+                                            android:visibility="gone" />
+
+                                        <TextView
+                                            android:id="@+id/txt_precoAdicionalStevia"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/space_padding_topbotton"
+                                            android:layout_marginBottom="@dimen/space_padding_topbotton"
+                                            android:layout_weight="1"
+                                            android:gravity="end"
+                                            android:onClick="montarAdicionalEstatico"
+                                            android:text="R$5,00"
+                                            android:textColor="@color/paletaSecundaria"
+                                            android:textSize="@dimen/txt_size_preco"
+                                            android:visibility="gone" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:orientation="horizontal">
+
+                                        <CheckBox
+                                            android:id="@+id/chckbtn_adicionalCristal"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/space_padding_topbotton"
+                                            android:layout_marginBottom="@dimen/space_padding_topbotton"
+                                            android:layout_weight="1"
+                                            android:text="Cristal"
+                                            android:textColor="@color/paletaPrincipal"
+                                            android:textSize="@dimen/txt_size_itens"
+                                            android:visibility="gone" />
+
+                                        <TextView
+                                            android:id="@+id/txt_precoAdicionalCristal"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/space_padding_topbotton"
+                                            android:layout_marginBottom="@dimen/space_padding_topbotton"
+                                            android:layout_weight="1"
+                                            android:gravity="end"
+                                            android:onClick="montarAdicionalEstatico"
+                                            android:text="R$2,00"
+                                            android:textColor="@color/paletaSecundaria"
+                                            android:textSize="@dimen/txt_size_preco"
+                                            android:visibility="gone" />
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/paletaPrincipal"
+                            android:gravity="center"
+                            android:text="Frutas Adicionais"
+                            android:textColor="@android:color/background_light"
+                            android:textSize="@dimen/txt_size_titulos" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingTop="@dimen/space_padding_topbotton"
+                                android:paddingBottom="@dimen/space_padding_topbotton">
+
+                                <CheckBox
+                                    android:id="@+id/checkBox_Manga"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:paddingTop="@dimen/space_padding_topbotton"
+                                    android:paddingBottom="@dimen/space_padding_topbotton"
+                                    android:text="Manga"
+                                    android:textColor="@color/paletaPrincipal"
+                                    android:textSize="@dimen/txt_size_itensEstaticos" />
+
+                                <TextView
+                                    android:id="@+id/txt_precoManga"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:onClick="montarFrutasEstatico"
+                                    android:text="R$3,00"
+                                    android:textColor="@color/paletaSecundaria"
+                                    android:textSize="@dimen/txt_size_preco"
+                                    android:visibility="invisible" />
+
+                                <CheckBox
+                                    android:id="@+id/checkBox_Kiwi"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:paddingTop="@dimen/space_padding_topbotton"
+                                    android:paddingBottom="@dimen/space_padding_topbotton"
+                                    android:text="Kiwi"
+                                    android:textColor="@color/paletaPrincipal"
+                                    android:textSize="@dimen/txt_size_itensEstaticos" />
+
+                                <TextView
+                                    android:id="@+id/txt_precoKiwi"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:onClick="montarFrutasEstatico"
+                                    android:text="R$3,00"
+                                    android:textColor="@color/paletaSecundaria"
+                                    android:textSize="@dimen/txt_size_preco"
+                                    android:visibility="invisible" />
+
+                                <CheckBox
+                                    android:id="@+id/checkBox_Morango"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:paddingTop="@dimen/space_padding_topbotton"
+                                    android:paddingBottom="@dimen/space_padding_topbotton"
+                                    android:text="Morango"
+                                    android:textColor="@color/paletaPrincipal"
+                                    android:textSize="@dimen/txt_size_itensEstaticos" />
+
+                                <TextView
+                                    android:id="@+id/txt_precoMorango"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:onClick="montarFrutasEstatico"
+                                    android:text="R$3,00"
+                                    android:textColor="@color/paletaSecundaria"
+                                    android:textSize="@dimen/txt_size_preco"
+                                    android:visibility="invisible" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="0dp"
+                                android:layout_weight="1"
+                                android:background="@color/paletaPrincipal"
+                                android:gravity="center"
+                                android:text="Acompanhamentos"
+                                android:textColor="@android:color/background_light"
+                                android:textSize="@dimen/txt_size_titulos" />
+
+                            <CheckBox
+                                android:id="@+id/rdbtn_MarcarTodos"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0"
+                                android:buttonTint="@color/paletaSecundaria"
+                                android:text="Todos"
+                                android:textColor="@color/paletaPrincipal"
+                                android:textSize="@dimen/txt_size_itens"
+                                android:visibility="invisible" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+
+                                <ListView
+                                    android:id="@+id/list1_acompanhamentos"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <ListView
+                                    android:id="@+id/list2_acompanhamentos"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/btn_confirmarPedido"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@color/paletaPrincipal"
+        android:textColor="@android:color/background_light"
+        android:textSize="@dimen/txt_size_confirmar" />
+
+</LinearLayout>
