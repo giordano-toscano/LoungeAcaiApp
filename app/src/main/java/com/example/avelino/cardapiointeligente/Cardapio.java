@@ -788,12 +788,12 @@ public class Cardapio extends AppCompatActivity {
 
         rdbtn_inLoco = (RadioButton) findViewById(R.id.rdbtn_InLoco);
         rdbtn_viagem = (RadioButton) findViewById(R.id.rdbtn_Viagem);
-        if(rdbtn_inLoco.isChecked() == true){
-            rdbtn_inLoco.toggle();
-        }
-        if(rdbtn_viagem.isChecked() == true){
-            rdbtn_viagem.toggle();
-        }
+
+        rdbtn_inLoco.setChecked(false);
+
+
+        rdbtn_viagem.setChecked(false);
+
 
         for (int i = 0; i <arrayTamanhos.size() ; i++) {
             arrayTamanhos.get(i).setChecado(false);
