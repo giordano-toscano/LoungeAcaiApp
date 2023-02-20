@@ -19,7 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -70,8 +69,6 @@ public class Cardapio extends AppCompatActivity {
 
     Button btn_confirmarPedido;
 
-    RadioGroup radioGroupLocal;
-
     //Componentes Local/Viagem
     RadioButton rdbtn_inLoco;
     RadioButton rdbtn_viagem;
@@ -99,7 +96,7 @@ public class Cardapio extends AppCompatActivity {
     //Marcar todos os Acompanhamentos
     CheckBox rdbtn_MarcarTodos;
 
-    Pedido p;
+    Pedido pedido;
     Acai acai;
     PrecoFinal precoFinal = new PrecoFinal(0,0,0,0,0,0,0);
     int qtdClickHistorico;
@@ -179,22 +176,22 @@ public class Cardapio extends AppCompatActivity {
                         SimpleDateFormat formataData = new SimpleDateFormat("dd-MM-yyyy");
                         Date data = new Date();
 
-                        p = new Pedido(acai);
-                        p.setData(new Date());
+                        pedido = new Pedido(acai);
+                        pedido.setData(new Date());
 
                         if (rdbtninLocal.isChecked()) {
-                            p.setLocal(Local.LOCAL);
+                            pedido.setLocal(Local.LOCAL);
                         } else if (rdbtnViagem.isChecked()) {
-                            p.setLocal(Local.VIAGEM);
+                            pedido.setLocal(Local.VIAGEM);
                         }
 
 
-                        p.CalcularPedido();
-                        bancoController.inserirPedidoNoBanco(p);
+                        pedido.CalcularPedido();
+                        bancoController.inserirPedidoNoBanco(pedido);
 
                         try {
 
-                            final String pedidoStringfy = po.orderParser(p);
+                            final String pedidoStringfy = po.orderParser(pedido);
 
                             btPrinter.sendData(pedidoStringfy);
                             Log.d("IMPRIMINDO",pedidoStringfy);
@@ -214,7 +211,7 @@ public class Cardapio extends AppCompatActivity {
                                     5000
                             );
                             //Log.d("IMPRIMINDO", po.orderParser(p));
-                            alertDialogCustom(p);
+                            alertDialogCustom(pedido);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -288,6 +285,7 @@ public class Cardapio extends AppCompatActivity {
         rdbtn_inLoco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                rdbtn_viagem.setChecked(false);
                 preferences.salvarPreferencias("precoEmbalagem", (float)(0));
                 precoFinal.setPrecoEmbalagem(preferences.carregarPreferencias("precoEmbalagem"));
                 precoFinal.notifyChange();
@@ -300,6 +298,7 @@ public class Cardapio extends AppCompatActivity {
         rdbtn_viagem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                rdbtn_inLoco.setChecked(false);
                 preferences.salvarPreferencias("precoEmbalagem", (float)(1.0));
                 precoFinal.setPrecoEmbalagem(preferences.carregarPreferencias("precoEmbalagem"));
                 precoFinal.notifyChange();
@@ -592,7 +591,7 @@ public class Cardapio extends AppCompatActivity {
 
         rdbtn_inLoco = (RadioButton) findViewById(R.id.rdbtn_InLoco);
         rdbtn_viagem = (RadioButton) findViewById(R.id.rdbtn_Viagem);
-        radioGroupLocal = (RadioGroup) findViewById(R.id.radio_groupLocal);
+        //radioGroupLocal = (RadioGroup) findViewById(R.id.radio_groupLocal);
 
     }
 
@@ -787,8 +786,14 @@ public class Cardapio extends AppCompatActivity {
         RadioGroup radioGroup = (RadioGroup)findViewById(R.id.radio_group);
         radioGroup.clearCheck();
 
-        RadioGroup radioGroupLocal = (RadioGroup) findViewById(R.id.radio_groupLocal);
-        radioGroupLocal.clearCheck();
+        rdbtn_inLoco = (RadioButton) findViewById(R.id.rdbtn_InLoco);
+        rdbtn_viagem = (RadioButton) findViewById(R.id.rdbtn_Viagem);
+        if(rdbtn_inLoco.isChecked() == true){
+            rdbtn_inLoco.toggle();
+        }
+        if(rdbtn_viagem.isChecked() == true){
+            rdbtn_viagem.toggle();
+        }
 
         for (int i = 0; i <arrayTamanhos.size() ; i++) {
             arrayTamanhos.get(i).setChecado(false);
