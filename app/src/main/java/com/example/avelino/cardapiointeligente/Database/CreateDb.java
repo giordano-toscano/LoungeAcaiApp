@@ -4,8 +4,8 @@ import android.content.Context;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.support.annotation.Nullable;
-
+//import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import com.example.avelino.cardapiointeligente.Model.Acompanhamento;
 import com.example.avelino.cardapiointeligente.Model.Adicional;
 import com.example.avelino.cardapiointeligente.Model.Frutas;

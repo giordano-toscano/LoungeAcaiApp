@@ -1,7 +1,8 @@
 package com.example.avelino.cardapiointeligente;
 
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Preferences extends AppCompatActivity{
 
