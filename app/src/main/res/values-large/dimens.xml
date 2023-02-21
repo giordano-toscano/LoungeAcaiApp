@@ -2,11 +2,11 @@
 <resources>
 
     <dimen name="txt_size_itens">24sp</dimen>
-    <dimen name="txt_size_itensEstaticos">24sp</dimen>
-    <dimen name="txt_size_titulos">28sp</dimen>
+    <dimen name="txt_size_itensEstaticos">22sp</dimen>
+    <dimen name="txt_size_titulos">24sp</dimen>
     <dimen name="txt_size_preco">20sp</dimen>
     <dimen name="txt_size_confirmar">24sp</dimen>
-    <dimen name="space_padding_topbotton">10sp</dimen>
-    <dimen name="space_padding_acompanhamento_topbotton">1sp</dimen>
+    <dimen name="space_padding_topbotton">8sp</dimen>
+    <dimen name="space_padding_acompanhamento_topbotton">8sp</dimen>
 
 </resources>
