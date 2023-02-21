@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="txt_size_itens">10sp</dimen>
-    <dimen name="txt_size_itensEstaticos">10sp</dimen>
-    <dimen name="txt_size_titulos">12sp</dimen>
-    <dimen name="txt_size_preco">8sp</dimen>
-    <dimen name="txt_size_confirmar">10sp</dimen>
-    <dimen name="space_padding_topbotton">1sp</dimen>
-    <dimen name="space_padding_acompanhamento_topbotton">1sp</dimen>
+    <dimen name="txt_size_itens">24sp</dimen>
+    <dimen name="txt_size_itensEstaticos">24sp</dimen>
+    <dimen name="txt_size_titulos">28sp</dimen>
+    <dimen name="txt_size_preco">20sp</dimen>
+    <dimen name="txt_size_confirmar">20sp</dimen>
+    <dimen name="space_padding_topbotton">10sp</dimen>
+    <dimen name="space_padding_acompanhamento_topbotton">10sp</dimen>
 
 </resources>
