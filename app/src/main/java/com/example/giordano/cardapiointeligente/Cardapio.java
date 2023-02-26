@@ -793,7 +793,7 @@ public class Cardapio extends AppCompatActivity {
     public void limparAdapter(){
 
         //Clear BowlSize RadioButtons
-        //clearCheckeBowlSizedButtons(0);
+        clearCheckeBowlSizedButtons(0);
 
         // Clear Local Of Cunsumption RadioButtons
         rdbtn_inLoco = (RadioButton) findViewById(R.id.rdbtn_InLoco);
